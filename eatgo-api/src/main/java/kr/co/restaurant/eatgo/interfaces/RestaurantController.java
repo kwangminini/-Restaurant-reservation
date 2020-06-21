@@ -1,15 +1,14 @@
 package kr.co.restaurant.eatgo.interfaces;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import kr.co.restaurant.eatgo.domain.Restaurant;
 import kr.co.restaurant.eatgo.domain.RestaurantRepository;
+import kr.co.restaurant.eatgo.domain.RestaurantRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
