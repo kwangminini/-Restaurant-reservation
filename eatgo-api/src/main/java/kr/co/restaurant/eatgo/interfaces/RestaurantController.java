@@ -1,8 +1,8 @@
 package kr.co.restaurant.eatgo.interfaces;
 
-import kr.co.restaurant.eatgo.domain.Restaurant;
-import kr.co.restaurant.eatgo.domain.RestaurantRepository;
-import kr.co.restaurant.eatgo.domain.RestaurantRepositoryImpl;
+import com.sun.glass.ui.Menu;
+import kr.co.restaurant.eatgo.application.RestaurantService;
+import kr.co.restaurant.eatgo.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +17,24 @@ public class RestaurantController {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+    @Autowired
+    private MenuItemRepository menuItemRepository;
+    @Autowired
+    private RestaurantService restaurantService;
+
     @GetMapping("/restaurants")
     public List<Restaurant> list(){
-        List<Restaurant> restaurants = restaurantRepository.findAll();
+        List<Restaurant> restaurants = restaurantService.getRestaurants();
         return restaurants;
     }
 
     @GetMapping("/restaurants/{id}")
     public Restaurant detail(@PathVariable("id") Long id){
-        Restaurant restaurant = restaurantRepository.findById(id);
+        Restaurant restaurant = restaurantService.getRestaurant(id); //기본정보 + 메뉴정보
+        //Restaurant restaurant = restaurantRepository.findById(id);
+
+//        List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
+//        restaurant.setMenuItems(menuItems);
         return restaurant;
     }
 }
