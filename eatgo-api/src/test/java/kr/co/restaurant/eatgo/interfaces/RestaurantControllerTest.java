@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -23,7 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(RestaurantController.class)
+//@WebMvcTest(RestaurantController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class RestaurantControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -46,6 +50,12 @@ public class RestaurantControllerTest {
 
     @Test
     public void detail() throws Exception {
+        Restaurant restaurant1 = new Restaurant(1004L,"Bob zip","Seoul");
+        restaurant1.addMenuItem(new MenuItem("Kimchi"));
+
+        Restaurant restaurant2 = new Restaurant(2020L,"Cyber Food","Seoul");
+        given(restaurantService.getRestaurant(1004L)).willReturn(restaurant1);
+        given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
         mvc.perform(get("/restaurants/1004"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
