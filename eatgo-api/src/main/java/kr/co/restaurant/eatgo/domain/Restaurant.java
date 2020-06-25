@@ -12,11 +12,14 @@ public class Restaurant {
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
 
     public Restaurant() {
-
     }
 
     public Restaurant(Long id, String name, String address) {
         this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+    public Restaurant(String name, String address){
         this.name = name;
         this.address = address;
     }
@@ -48,5 +51,9 @@ public class Restaurant {
         for(MenuItem menuItem:menuItems){
             addMenuItem(menuItem);
         }
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

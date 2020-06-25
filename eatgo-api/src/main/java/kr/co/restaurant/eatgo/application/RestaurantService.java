@@ -5,7 +5,6 @@ import kr.co.restaurant.eatgo.domain.MenuItemRepository;
 import kr.co.restaurant.eatgo.domain.Restaurant;
 import kr.co.restaurant.eatgo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +34,8 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public void addRestaurant(Restaurant restaurant) {
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        Restaurant saved = restaurantRepository.save(restaurant);
+        return saved;
     }
 }
