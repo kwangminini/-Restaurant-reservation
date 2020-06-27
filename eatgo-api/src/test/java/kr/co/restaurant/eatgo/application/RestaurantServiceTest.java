@@ -44,7 +44,7 @@ public class RestaurantServiceTest {
         Restaurant restaurant = new Restaurant(1004L,"Bob zip","Seoul");
         restaurants.add(restaurant);
         given(restaurantRepository.findAll()).willReturn(restaurants);
-        given(restaurantRepository.findById(1004L)).willReturn(restaurant);
+        given(restaurantRepository.findById(1004L)).willReturn(java.util.Optional.of(restaurant));
     }
 
     @Test

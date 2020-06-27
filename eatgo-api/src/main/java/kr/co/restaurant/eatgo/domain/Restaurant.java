@@ -2,13 +2,20 @@ package kr.co.restaurant.eatgo.domain;
 
 import ch.qos.logback.core.BasicStatusManager;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Restaurant {
     private  String name;
     private  String address;
+    @Id
+    @GeneratedValue
     private  Long id;
+    @Transient //db에저장하지 않겠다는 의미
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
 
     public Restaurant() {

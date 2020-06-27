@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class RestaurantTest {
     @Test
