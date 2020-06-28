@@ -13,7 +13,12 @@ import static org.junit.Assert.*;
 public class RestaurantTest {
     @Test
     public void creation(){
-        Restaurant restaurant = new Restaurant(1004L,"Bob zip","");
+        //Restaurant restaurant = new Restaurant(1004L,"Bob zip","");
+        Restaurant restaurant = Restaurant.builder()
+                                        .id(1004L)
+                                        .name("Bob zip")
+                                        .address("Seoul")
+                                        .build();
         assertThat(restaurant.getName(), is("Bob zip"));
         assertThat(restaurant.getId(), is(1004L));
 

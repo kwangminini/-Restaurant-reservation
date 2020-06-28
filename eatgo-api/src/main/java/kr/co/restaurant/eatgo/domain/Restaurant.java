@@ -1,6 +1,7 @@
 package kr.co.restaurant.eatgo.domain;
 
 import ch.qos.logback.core.BasicStatusManager;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,11 @@ import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor // 기본 생성
+@Builder
+@AllArgsConstructor
 public class Restaurant {
     private  String name;
     private  String address;
@@ -16,10 +22,8 @@ public class Restaurant {
     @GeneratedValue
     private  Long id;
     @Transient //db에저장하지 않겠다는 의미
-    private List<MenuItem> menuItems = new ArrayList<MenuItem>();
+    private List<MenuItem> menuItems;
 
-    public Restaurant() {
-    }
 
     public Restaurant(Long id, String name, String address) {
         this.id = id;
@@ -31,41 +35,12 @@ public class Restaurant {
         this.address = address;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
     public String getInformation(){
         return name + " in " +address;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
-    }
-
-    public void addMenuItem(MenuItem menuItem) {
-        menuItems.add(menuItem);
-    }
-
     public void setMenuItems(List<MenuItem> menuItems) {
-        for(MenuItem menuItem:menuItems){
-            addMenuItem(menuItem);
-        }
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.menuItems = new ArrayList<>(menuItems);
     }
 
     public void updateInformation(String name, String address) {
