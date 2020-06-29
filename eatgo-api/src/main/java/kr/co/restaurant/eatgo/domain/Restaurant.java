@@ -2,11 +2,13 @@ package kr.co.restaurant.eatgo.domain;
 
 import ch.qos.logback.core.BasicStatusManager;
 import lombok.*;
+import org.hibernate.annotations.NotFound;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -16,7 +18,9 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class Restaurant {
+    @NotEmpty
     private  String name;
+    @NotEmpty
     private  String address;
     @Id
     @GeneratedValue
